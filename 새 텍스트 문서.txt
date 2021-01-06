@@ -1,0 +1,20 @@
+마이페이지 : flex 비율로
+
+사진 배치 grid
+
+팔로워 : 모달
+팔로우
+디자인 똑같이
+
+프로필 편집(왼쪽 리스트x)
+
+mx-auto : margin 0 auto -가운데
+ml-auto : margin-left  - 오른쪽정렬
+mr-auto : margin-right - 왼쪽정렬
+my-auto
+
+m-5 : 전체 마진
+my-5 : 세로 마진
+mx-5 : 가로 마진
+
+form-control : 폼 끝까지감

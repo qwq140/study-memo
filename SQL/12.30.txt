@@ -1,0 +1,42 @@
+스프링
+어노테이션
+리플렉션
+
+RestController : 데이터를 리턴
+
+-----------------------------
+리플렉션 강의 ( 유튜브에 영상 올라옴 )
+git 주소 : https://github.com/codingspecialist
+sublime text
+
+-------------------------------
+
+디클레어메서드 : 그 파일의 메서드만
+메서드 : 부모의 메서드까지 모두
+
+
+
+
+
+----------
+API : http 주소를 통해서 서버의 메서드를 호출
+
+리퀘스트 디스패처는 내부에서 실행되므로 필터를 안탄다.
+request, response 객체들고 파일을 찾아감
+
+-------------------------------------------------------
+DTO 
+validation체크에 좋음
+
+타입을 모르기때문에 Object 타입을 사용
+
+setData(dtoInstance,request)
+
+request할때 입력한 데이터를 dtoInstance에 입력
+
+hasMoreElements() : 열거형 타입
+
+테스트할때는 junit (빌드패스)
+
+
+Dispatcher --> 전과 후를 관리할 수 있음  함수 리턴을 함으로써 후를 관리

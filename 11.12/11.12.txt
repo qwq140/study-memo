@@ -1,0 +1,102 @@
+(사람이 이해할수있는 언어 : 영어)           
+코딩-------->		                JVM---->		os  ---------------> cpu-기계어(0101)
+.java ------> 컴파일 --->   .class				window 	                        Intel	
+메모장	    (jdk)		(바이트코드)
+STS툴
+
+JVM : java 가상 머신 - 해당 os에 맞게 번역             os가 cpu에 맞게 번역
+        os와 cpu에 종속되지 않는다	
+
+
+.java파일을 컴파일하여 .class(바이트코드)로 변환하고 .class파일을 JVM에게 던지면 실행
+
+
+
+
+프로그래밍 언어 활용
+1.JDK---> JRE(자바실행환경)
+2.STS
+3.JVM 원리
+4.OOP
+
+
+JRE : 프로그램 개발을 위한 재료
+jdk : 프로그램 개발을 위한 도구
+
+자바 sun 
+-오라클 회사 인수 1.8 인수
+진형 : 오픈진형(openjdk), 오라클(13), 수많은 벤더회사(A, B, C)
+
+
+자바 - sun (GNU)
+
+오라클(인수 1.8)           Azul zulu(OPEN JDK)             Adope(OPEN JDK)
+JDK                            JDK                                JDK
+JRE                            JRE                                 JRE
+                                -기술지원(유료)
+서로의 JDK 호환x 
+
+11버전- 통합됨 LTS : 오랜기간 동안 갱신안댐
+
+13 15
+
+안드로이드(구글)
+-오라클 JDK (결제 -> 구독형 -> 6개월마다 업뎃) - 6개월 마다 수정
+
+jdk 환경 변수 : cmd에서 작업 해야할 경우가 있다..... 
+java.exe :  jvm에 던지는
+javac.exe : .class로 컴파일
+
+
+파스칼 표기법 ---> ex) AppleWatch    중요
+
+.java 파일들이 모여있는 폴더 : package
+
+JVM은 .java 말고도 다른 언어도 받기 때문에 컴파일을 할때 확장자를 적는다
+
+sts
+저장 시 컴파일 됨
+실행 : ctrl + f11
+
+메모리 구조
+Static
+
+Heap
+
+Stack
+
+
+RAM의 공간 절반 : os
+
+RAM에서 JVM 관리 영역
+총 공간 : 1G
+Static 공간  -300M
+미지의 영역 -200M    static이나 heap의 메모리 영역이 부족할시 사용
+Heap  공간  -500M
+
+만약 Heap의 메모리가 700M를 넘어가면 Overflow 발생
+       Heap의 메모리가 500M를 넘어가면 미지의 영역의 메모리를 땡겨 사용
+
+
+Static : 프로그램 시작 전부터 종료시까지
+Heap : 유동적으로 들어왔다 나갔다 함 , 자바는 JVM이 관리해줌 (가비지 컬렉션)
+
+하드웨어 관리는 직접 관리
+
+           .java 
+	|   javac
+           .class
+            |   java
+           JVM
+1.클래스파일 로딩
+2.static 찾기  ---> static 공간에 올림            
+3. main()함수를 호출
+
+이름 뒤에()가 있으면 함수
+
+함수가 호출 되면 함수 내부를 스택이라고 하는데 함수가 호출 될때 부터 종료될때까지 뜬다.
+
+
+
+int, long, double, boolean, char, 클래스자료형, 배열
+static과 heap의 차이 (이해)

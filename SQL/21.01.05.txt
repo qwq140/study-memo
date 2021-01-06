@@ -1,0 +1,81 @@
+AJAX -> 테스트 ( 프로젝트)
+라이브러리 - gson 필요
+
+요청(ajax) -> x-www-form-urlencoded => json
+응답(ajax) -> json
+
+1. view 화면에서 KEY=VALUE 데이터 (GET)
+2. view 화면에서 KEY=VALUE 데이터 (POST)
+3. view 화면에서 json데이터요청 (POST)
+
+4. 응답 text/plain
+5. 응답 application/x-www-urlencoded
+6. 응답 application/json
+
+getParameter : key=value 형태의 값을 읽는다.
+
+데이터가 있으면 contentType이 필요없다
+
+스트링부터 : pull 서버
+webflux -> push서버 (스레드 한개)
+
+DB에 붙으면 - 블락(대기시간) - R2DBC
+
+
+통신은 무조건 문자열(String)
+
+BufferedReader : http body 데이터 순수하게 읽기
+데이터 길이가 짧으면 한번에 읽을 수 있다.
+
+------------------------------------
+자바 스크립트
+자료형 x - 원시자료형 x
+크기가 정해져있는 타입이 없음.
+모든 변수는 레퍼런스
+동적 언어
+
+자료형 => 객체 (인터프리터)
+테이터 타입이 없음.
+
+타입스크립트 ( 마이크로소프트에서 자바스크립트를 기반으로 만든것)
+
+this는 호출하는 위치에 떄라 달라진다.
+화살표 함수를 사용할 때 this는 자기를 감싸고 있는 부모의 this (자바의 this와 비슷)
+화살표 함수를 사용하지 않으면 this를 바인딩 해야한다.
+
+this 정리
+자바스크립트에서 this는 함수를 호출한 놈의 객체가 바인딩됨.
+근데 가끔 이상한 경우가 있다. 이 예외를 다 기억하든 외워야함.
+그래서 항상 var _this = this;를 사용했다.
+
+화살표 함수를 사용하면 this가 내가 생각한 this가 된다. 
+가독성이 좋음
+
+화살표함수는 중괄호를 지우는 순간 리턴함 (한줄밖에 못씀.)
+중괄호를 사용하면 명시적으로 return을 해줘야함.
+
+자바스크립트
+1. 자료형
+2. 화살표 함수 (ES6)
+
+
+-----------------------------------
+로그인 구현
+select 이지만 예외적으로 post
+form 태그의 데이터 전송은 x-www-form-urlencoded 형식이다.
+키값은 name의 값 value는 입력한 거
+
+prepareStatement : 인젝션 공격을 막아줌
+
+principal : 인증주체
+
+자바스크립트의 함수는 window 객체 안에 다 있다.
+
+세션의 정보는 30분 또는 브라우저를 다 닫을때까지 존재
+
+
+
+-------------------------------
+로그인 구현
+
+loginForm ->

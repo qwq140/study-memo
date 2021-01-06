@@ -1,0 +1,309 @@
+
+
+각자 따로 DB에 접근할 때는 static 상관이 없다.
+
+A(사용자) -------------  DB
+                 DAO
+
+여러명의 사용자가 하나의 서버를 거쳐서 DB를 접근할 떄는 static을 사용하면 안된다. 
+(DB접근은 절차적으로 진행되기 때문에 conn을 하나만 구성하면 된다.)
+
+A--------|
+B--------|--- 서버 -------- DB
+C--------|             DAO
+
+
+
+
+데이터베이스는 비동기(기다리는것)처리가 안된다.  동시접근, 동시SELECT는 가능
+
+
+--------
+tomcat 버전9
+
+tomcat 설치시 HTTP/1.1 Connector Port 8080으로 사용시 오라클이랑 충돌 나므로 8000 사용
+
+웹서버 - 일종의 폴더(데이터를 가지고 있는 폴더)
+컴퓨터에서 폴더하나를 웹서버로 사용 ---- 통신을 통해서 외부 컴퓨터에 있는 파일에 접근
+
+url 접근 방식 (확장자를 가진 파일에 접근)
+uri 식별자 접근 방식
+
+
+설정 파일 대부분 xml --- web.xml에 welcome파일 설정되어있음
+
+
+
+1. 웹서버 : 클라이언트가 필요한 파일을 들고있는 폴더
+    통신을 통해서 누구나 접근할 수 있다.
+
+2. url : 파일에 접근하는 방식
+  응용프로그램의 layer7은 사용자가 결정
+  웹브라우저의 포트는 80
+
+
+
+
+
+-------
+웹서버는 클라이언트가 필요한 파일을 들고 있는 폴더다 -- 아파치
+조건 : 통신을 통해서 접근할 수 있어야 함.
+통신의 조건 : 포트(PORT)가 필요, 상대방의 주소(IP)가 필요
+URL 방식 : IP와 PORT와 Resource
+
+------------------------------------------------------------------------------
+웹서버(아파치)
+1. txt파일
+2. html파일
+3. png파일
+4. java파일
+   톰캣 : hello.java파일 -> hello.class -> 실행(결과) -> hello.html
+직렬화해서 보내고 역직렬화해서 받는다........
+
+웹브라우저는 컴파일러가 아니다... java, c, python 파일은 못읽는다...( 그저 안에 적혀있는 영어코드만 읽음 )
+
+
+웹서버는 아파치 , 톰캣은 웹서버가 아니다.
+
+웹브라우저는 java같은 파일은 못읽는다. 그래서 아파치는 톰캣한테 넘김
+톰캣은 일종의 컴파일러라고 보면 댐. ---- hello.java 파일 -> hello.class -> 실행(결과) -> hello.html
+톰캣은 hello.html을 아파치에게 줌
+
+톰캣은 아파치가 이해하지 못하는 것(java)을 위임받아서 컴파일해서 html파일로 만들어 아파치에게 전달
+
+-----------------------------
+웹으로 데이터베이스 연결 ( 데이터베이스 구현 )
+sts --> project 생성 (dynamic web Project) -> new Runtime --> apache Tomcat 9.0, 톰캣 경로
+
+Context root : 내가 만들려는 프로젝트의 입구
+Content directory : 
+
+Context : 문맥
+
+프로젝트 만들때 오류 (dynamic web project)
+프로젝트의 프로퍼티에서 project facets 자바 버전확인
+
+Run as -> Run on server : 서버 작동
+
+context root (test1)가 필요한 이유 : 하나의 서버에 여러가지 프로젝트를 구분할 수 있다.
+--> context root로 들어오면 WebContent가 다이렉트로 열린다. (규칙)
+
+오버라이딩되어서 servers폴더의 파일들이 실행
+
+A
+1. index.html은 웰컴파일이다.
+
+B 재정의 A
+1. index.html은 웰컴파일이다.
+
+두 개다 실행된다. -> 후에 실행된것이 중복된것은 덮어씌우고 추가적인 것은 추가적으로 실행
+
+server.xml에서 <Context ......  : 는 서버가 실행될때 작성된다.
+
+server.xml에서 path 를 변경시키면 Context root를 변경시킬 수 있다.
+
+웹서버에 프로젝트들을 추가시킬때 실질적으로는 WebContent만 들어간다. (test1, test9)
+Context root 명칭을 변경시키는 이유는 프로젝트의 명을 노출시키기 싫기 때문에
+
+주소체계
+http://ip:포트/contextroot/리소스명 
+
+html 파일 통신 -> http 프로토콜 사용
+
+----------------------------------
+
+UTF-8 고정 설정
+윈도우 -> 프리페어런스 -> enc 검색 해서 UTF-8로 설정
+
+META-INF, WEB-INF : 외부 접근 불가, 프로젝트 내부에서만 접근 가능, 프로젝트의 설정파일을 넣어놓음
+
+
+jsp : html에 자바 코드를 적을 수 있게 해줌
+
+<% %>스크립트 릿 : 지금은 안씀, 알고는 있자
+
+<%= %> 표현식 : 바로 실행되는 코드
+
+클라이언트 : http://localhost:8000/test1/home.jsp 요청
+아파치 : home.jsp을 톰캣한테 전달
+톰캣 : home.jsp을 분석 (자바 코드는 컴파일) 
+
+
+jsp 등등 : html에 해당 언어들이 있는것
+
+
+---------------
+웹 할때 패키지 명은 : com.cos.test1.config 형식으로
+
+http://cos.com 이면
+com.cos 역으로 한다음 com.cos.contextroot(test1).config 형식
+
+public static void 삭제하기(int id) {
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "delete from users where id = ?";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			// commit
+			pstmt.executeUpdate();
+			System.out.println("DELETE가 완료되었습니다.");
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다.");
+		}
+	}
+
+	
+	public static void 수정하기(int id, String name, String phone, String address, String relation) {
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "update users set name = ?, phone = ?, address = ?, relation = ? where id = ?";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, address);
+			pstmt.setString(4, relation);
+			pstmt.setInt(5, id);
+			
+			// commit
+			pstmt.executeUpdate();
+			System.out.println("UPDATE가 완료되었습니다.");
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다."+e.getMessage());
+		}
+	}
+	
+	public static ArrayList<User> 찾기() {
+		// 컬렉션 만들기
+		ArrayList<User> list = new ArrayList<User>();
+		
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "select * from users";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			// 결과 받기
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("SELECT가 완료되었습니다.");
+			
+			while(rs.next()) { // 검색 결과가 한건이 아니면  while로 변경한다.
+				int id = rs.getInt("id"); // 칼럼명
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String relation = rs.getString("relation");
+				
+				User user = new User(id, name, phone, address, relation);
+				list.add(user);
+			}	
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다."+e.getMessage());
+		}
+		return null;
+	}
+	
+	
+	public static ArrayList<User> 검색(String relation) {
+		// 컬렉션 만들기
+		ArrayList<User> list = new ArrayList<User>();
+		
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "select * from users where relation = ?";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, relation);
+			
+			// 결과 받기
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("SELECT가 완료되었습니다.");
+			
+			while(rs.next()) { // 검색 결과가 한건이 아니면  while로 변경한다.
+				int id = rs.getInt("id"); // 칼럼명
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String relation2 = rs.getString("relation");
+				
+				User user = new User(id, name, phone, address, relation2);
+				list.add(user);
+			}	
+			return list;
+			
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다."+e.getMessage());
+		}
+		return null;
+	}
+	
+	public static User 찾기(int id) {
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "select id, name, phone, address, relation from users where id = ?";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setInt(1, id);
+			// 결과 받기
+			ResultSet rs = pstmt.executeQuery();
+			System.out.println("SELECT가 완료되었습니다.");
+			
+			if(rs.next()) { // 검색 결과가 한건이 아니면  while로 변경한다.
+				int id2 = rs.getInt("id"); // 칼럼명
+				String name = rs.getString("name");
+				String phone = rs.getString("phone");
+				String address = rs.getString("address");
+				String relation = rs.getString("relation");
+				
+				return new User(id2, name, phone, address, relation);
+			}			
+			
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다."+e.getMessage());
+		}
+		return null;
+	}
+	
+	public static void 추가하기(String name, String phone, String address, String relation) {
+		// stream에 연결된 객체
+		Connection conn = DBConn.getConnection();
+
+		// 버퍼에 담을 메시지
+		String query = "INSERT INTO users(name, phone, address, relation) VALUES(?, ?, ?, ?)";
+
+		try {
+			// 버퍼연결해서 쿼리 전송
+			PreparedStatement pstmt = conn.prepareStatement(query);
+			pstmt.setString(1, name);
+			pstmt.setString(2, phone);
+			pstmt.setString(3, address);
+			pstmt.setString(4, relation);
+			// commit
+			pstmt.executeUpdate();
+			System.out.println("INSERT가 완료되었습니다.");
+		} catch (SQLException e) {
+			System.out.println("Query 전송시 오류가 발생했습니다.");
+		}
+	}

@@ -1,0 +1,32 @@
+조인 복습
+
+1. 모델링 (빌더 패턴)
+2. follow 테이블
+3. 모델링
+4. 조인 복습
+
+실습 UML, ER-다이어그램
+
+
+
+follow 테이블
+ssar이 cos를 follow 함.
+이 말은 cos의 팔로워는 ssar
+
+ssar -> cos
+ssar -> love
+love -> ssar
+cos -> love
+
+f2 
+2 1 -> x
+3 1 ->f2.fromUserId = 1  f1.toUserId = 3
+f1
+2 1 ---- > x
+3 1 -----> x
+1 3 -----> f1.fromUser= 1 ----- f1.toUserId= 3, f2.fromUserId = 3  ---> 1
+3 2 -----> x
+
+
+화면에 있는 데이터를 보고 테이블 모델링하기
+drawIO

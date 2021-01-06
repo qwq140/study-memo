@@ -1,0 +1,55 @@
+GROUP BY 절은 정렬부터 하고 DISTINCT 함
+ROLLUP 함수는 집계 함수에 따라 총계, 총평균, 총개수 등등을 나타냄
+
+
+
+SELECT
+INSERT
+DELETE
+UPDATE
+
+가로함수
+SUBSTR
+INSTR
+REPLACE
+LPAD, RPAD
+
+세로함수 (GROUP BY 또는 WHERE 절과 같이 사용됨)
+MIN
+MAX
+SUM
+COUNT
+AVG
+
+
+
+연산자
++ - / *
+MOD(10,2) 나머지 연산자
+|| 결합연산
+IN
+BETWEEN
+LIKE
+
+
+순위구하기
+rownum
+rank() over (order by 컬럼명)
+rank() over (partition by 컬럼명 order by 컬럼명)
+
+집합함수
+union all(그냥합치기), union(정렬,중복제거)  (합집합)
+
+정렬
+ORDER BY 컬럼명
+
+서브쿼리
+-인라인뷰 (from 절에 select)
+-서브쿼리 (where 절에 select)
+
+소계값
+ROLLUP (mysql, oracle)
+
+세로행을 가로행으로 변경 피벗
+pivot (mysql if문, decode)
+

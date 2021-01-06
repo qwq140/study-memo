@@ -1,0 +1,26 @@
+객체를 만들 때 (상태 ,행위 필수)
+상태 : 필드, heap변수    --------- private (마법 방지) 
+행위 : 함수, 메서드
+
+
+
+                                    StarUnit (object x) 추상적인 클래스는 변수를 가지면 안댐 void setHp(){}
+                                                                                                     int getHp(){}
+                                                                                                     int getAttack(){}
+
+Zealot         --------------      Scv      --------------------  Dragoon
+-name                           -name                                 -name
+-hp                               -hp                                    -hp
+-attack                           -attack                                -attack
+
+getter                             getter                                getter
+setter                              setter                                setter
+
+
+StarUnit u1 = z  
+StarUnit u2 = s
+
+u2.setHp(u2.getHp()-u1.getAttack());
+
+오버라이딩
+동적바인딩 : 부모꺼를 호출하면 자식이 호출됨

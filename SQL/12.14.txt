@@ -1,0 +1,65 @@
+join 두개의 테이블을 합치는것
+
+참조받는 테이블이 먼저 올리는 것이 효율적이다.
+
+Image 테이블 ( 드라이빙 테이블 )
+1	1	사진1
+2	1	사진2
+3	2	사진3
+
+
+Member 테이블 ( 드리븐 테이블 )
+1	ssar	ssar@nate.com
+2	cos	cos@nate.com
+3	love	love@nate.com
+
+1. 데이터베이스는 오브젝트를 저장할 수 없다.
+2. FK(참조키)를 사용해야 함.
+3. FK의 조건은 무조건 PK를 참조해야 함.
+4. 드라이빙 테이블은 FK를 가지고 있다.
+
+
+Member
+id  username password       email             imageUrl                         imageContent
+1      ssar       1234      ssar@nate.com      C드라이브,D드라이브           여행 좋아, 재밌었어
+2      cos        1234      cos@nate.com      
+
+-> 원자성이 깨짐(하나의 컬럼에는 하나의 데이터만 있어야함) -> 밑으로 내려본다. 중복이 되면 테이블을 나눈다.
+
+Member ( 데이터 중복)
+id  username password       email             imageUrl           imageContent
+1      ssar       1234      ssar@nate.com      C드라이브           여행 좋아
+2      cos        1234      cos@nate.com
+3      ssar       1234      ssar@nate.com      D드라이브           재밌었어
+
+
+원자성 x, 중복 x  ----> 테이블을 나눔
+Member                                                Image
+id  username password       email              id     imageUrl            imageContent    userId
+1      ssar       1234      ssar@nate.com       1     C드라이브           여행 좋아           1
+2      cos        1234      cos@nate.com       2     D드라이브           재밌었어            1
+
+one to many  ->  many가 FK를 가짐, many가 드라이빙 테이블
+
+
+
+
+inner 조인  = 동등조인, 이퀄조인, 동일조인 = 조인
+outer 조인  = left outer join, right outer join, full outer join
+self 조인
+
+
+프로젝트 : 수요일 오후까지 마무리
+1. PPT
+ - 영상 링크 첨부
+ - GITHUB 첨부
+ - 프로젝트 설명 (UML)
+
+2. github배포 - 주소
+ - commit 기록
+ - README.md (프로젝트 설명, 시연사진)
+      어떤 게임이고, 어떤 언어인지, 실행방법
+ - markdown ( markup언어 )
+
+3. 시연영상 .avi
+OCAM으로 시연영상 찍기

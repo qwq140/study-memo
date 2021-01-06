@@ -1,0 +1,28 @@
+char(10) -- 고정길이
+
+varchar(10) -- 가변길이 최대 65534
+longtext(최대 4GB)
+
+timestamp (날짜와 시간)
+
+주민등록번호(13)  -- char -- 항상 고정
+성별(1)  -- char -- 항상 고정
+핸드폰번호 (11) -- char -- 항상 고정
+
+쿼리스트링
+
+웹에서 (폼태그)
+POST 요청
+GET 요청
+
+
+enum('M', 'F')  --- 도메인 : 값이 어느 범주안에 있다.
+
+LRU 가장 최근에 사용된 데이터가 가장 오래있음
+
+오라클
+OracleServiceXE : 서버
+OracleXETNSL
+
+
+
