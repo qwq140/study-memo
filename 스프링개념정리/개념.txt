@@ -177,3 +177,280 @@ git 자료
 https://github.com/codingspecialist/Springboot-Jpa-AOP-Valid-RestDoc
 
 https://github.com/codingspecialist/Springboot-Special-Lecture
+
+-------------------------------------------------------
+war 파일 배포
+1. JSP 프로젝트를 엄청 간단하게 만들기
+ - DB연
+2. AWS 회원가입 (1년 프리티어)
+
+3. PC임대 (EC2서버) - Iaas ( 인프라 as a 서비스)
+
+컴퓨터 임대 - Iaas
+컴퓨터 windows, tomcat, jdk 개발 환경 - Paas
+컴퓨터 windows, 엑셀 - Saas
+컴퓨터 windows, 파워포인트 - Saas
+
+4. 리눅스 설치, 
+
+5. windows에 putty 설치(22번접속)
+아이디 : ubuntu
+열쇠 : post.pem => post.ppk (putty gen)
+
+6. ,톰켓 설치, 프로젝트를 배포 (war) 
+
+쉘 - os에 명령
+커널 - 하드웨어에 명령
+
+리눅스 기본
+
+22번 포트 접속 프로그램
+
+
+
+RSA
+-공개키 암호시스템
+-전자서명이 가능한 알고리즘
+-공개키 잠그면 비공개키로 열고 비공개키 잠그면 공개키 열기
+
+
+정보보안 CIA
+기밀성
+무결성
+가용성
+
+암호화 어떻게 했는지? -> 키 전달
+
+1. 상대방의 공개키로 잠그면 그 상대방만 읽을 수 있다.
+ : 비밀
+
+2. 자신의 비밀키로 잠그면 모두가 읽을 수 있다.
+ : 비밀x
+ : 전자서명(신뢰)
+
+비공개키 (공인인증서)
+
+상대방의 공개키를 사용하는 것은 기밀성은 확보하지만 무결성은 확보되지않는다.
+무결성을 확보하는 방법은 상대방의 공개키와 메시지를 인크립션
+
+프로토콜 : 송신자의 공개키로 열어서 신뢰성 확보
+            : 수신자의 개인키로 열어서 기밀성 확보
+
+리눅스 : 최고관리자 root => ubuntu
+sudo apt-get update ( sudo : root의 권한을 대행 받는다 )
+sudo apt-get search tomcat9
+sudo apt-get install tomcat9
+기본포트 8080 => http://52.78.94.179:8080
+sudo find / -name tomcat9
+sudo find / -name webapp
+netstat -nlpt
+sudo git clone 주소
+
+시험 내일 점심시간까지 제출
+
+
+----------------------------------
+docker
+sudo apt-get install docker.io
+docker --version
+sudo docker run -it ubuntu : 터미널모드로 들어감
+touch a.txt - 빈 파일 생성
+sudo docker ps
+sudo docker commit be098 v1/ubuntu
+sudo docker images
+sudo docker run -it v1/ubuntu
+ls
+exit
+sudo docker run -it ubuntu
+ls
+sudo docker pull aallam/tomcat-mysql
+sudo docker images
+sudo docker run -it -d v1/ubuntu
+sudo docker ps
+
+
+docker hub 
+
+Docker 개념
+
+-d : 백그라운드로 실행 (접속x)
+-it : 터미널모드로 접속 (접속o)
+
+docker exec 실행중인 프로세스에 접속하는 것
+1. ubuntu, MySQL, Tomcat 설치를 하고 싶으면 docker hub(원격저장소)에서 다운을 받아야함
+ ubuntu : os        tomcat : tomcat, os        mysql : mysql, os
+
+도커 설치
+sudo apt-get insrall docker.io
+도커 이미지 확인
+sudo docker images
+도커 실행중인 프로세스 확인
+docker ps
+실행중인 프로세스 종료
+docker stop 
+
+docker ps -a
+docker container prune (종료한 프로세스의 남은 찌꺼기 제거)
+도커 이미지 제거
+sudo docker rmi
+
+톰켓 설치
+docker pull tomcat
+
+터미널로 접속
+docker run -it tomcat
+빠져나오기 : ctrl + c
+
+bash로 접속
+docker run -it tomcat /bin/bash
+
+이미지 백그라운드로 실행
+docker run -d tomcat 
+
+백그라운드 프로세스로 접속
+docker docker exec -it
+
+백그라운드 프로세스 종료
+docker stop 컨테이너id
+
+포트포워딩 실행
+docker run -d -p 8000:8080 tomcat
+
+nano context.xml
+
+docker  mysql 자동실행
+
+
+ 
+root 비번 변경
+sudo passwd root
+su root
+
+
+
+https://blog.naver.com/getinthere/221712169664
+
+-----------------------------------------------------------
+apt를 쓰면 down, install을 같이 해주고 service를 등록해준다.
+service 모든 프로그램 접근
+
+도커하둡
+
+
+
+1. JSP 프로젝트를 엄청 간단하게 만들기
+ - DB연결
+
+2. AWS 회원가입 (1년 프리티어)
+
+3. PC임대 (EC2서버) - Iaas (인프라 as a 서비스)
+
+컴퓨터 임대 - Iaas
+컴퓨터 windows, tomcat, jdk 개발 환경 - Paas
+컴퓨터 windows, 엑셀 - Saas
+컴퓨터 windows, 파워포인트 - Saas
+
+4. 리눅스 설치
+
+
+5. windows에 putty설치(22번접속)
+아이디 : ubuntu
+열쇠 : post.pem  => post.ppk (putty gen)
+
+6. 톰켓 설치, 프로젝트를 배포(war)
+
+최고관리자 root => ubuntu
+sudo apt-get update
+sudo apt-cache search tomcat
+sudo apt-get install tomcat9
+기본포트 8080 => http://52.78.94.179:8080
+sudo find / -name tomcat9
+sudo find / -name webapps
+netstat -nlpt
+sudo git clone 주소
+sudo apt-get install mysql-server-5.7
+sudo mysql -u root -p
+
+---------------------------------------------------
+create user 'postuser'@'%' identified by 'bitc5600';
+GRANT ALL PRIVILEGES ON *.* TO 'postuser'@'%';
+create database postdb;
+
+use postdb;
+
+create table post(
+  id int primary key auto_increment,
+  title varchar(100),
+  content longtext
+) engine=InnoDB default charset=utf8;
+
+insert into post(title, content) values('제목1', '내용1');
+insert into post(title, content) values('제목2', '내용2');
+---------------------------------------------------
+context.xml
+-----------
+     <Resource name="jdbc/TestDB" auth="Container" type="javax.sql.DataSource"
+               maxTotal="100" maxIdle="30" maxWaitMillis="10000"
+               username="postuser" password="bitc5600" driverClassName="com.mysql.cj.jdbc.Driver"
+               url="jdbc:mysql://localhost:3306/postdb?serverTimezone=Asia/Seoul"/>
+
+------------------------------------------------------
+mysql 재시작
+sudo service mysql restart
+
+------------------------
+https 서버 구축
+https://blog.naver.com/codingspecialist/221333745666
+
+------------------------
+도커 설치
+sudo apt-get install docker.io
+
+root 비번 변경
+sudo passwd root
+su root
+
+------------------------
+톰켓 설치
+docker pull tomcat
+
+이미지 백그라운드로 실행
+docker run -d tomcat
+
+백그라운드 프로세스로 접속
+docker exec -it 컨테이너id /bin/bash
+
+백그라운드 프로세스 종료
+docker stop 컨테이너id
+
+포트포워딩 실행
+docker run -d -p 8000:8080 tomcat
+
+webapps 폴더 접근
+apt-get update
+apt-get install nano
+
+ROOT폴더 만드는 법 mkdir ROOT
+webapps/ROOT 폴더에 index.html 생성하기
+
+apt-get install net-tools & ifconfig
+
+---------락 걸린 파일 삭제하기
+rm /var/lib/apt/lists/lock 
+rm /var/cache/apt/archives/lock 
+rm /var/lib/dpkg/lock*
+
+---------mysql 설치
+apt-get install default-mysql-server
+
+-------서비스 실행
+service mysql start
+
+------MySQL 접속
+mysql -u root -p
+
+----사용자생성, Table생성 - 샘플데이터 추가
+
+----톰켓 context.xml 수정
+
+----war배포
